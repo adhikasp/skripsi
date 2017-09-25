@@ -39,7 +39,7 @@ identity.MajorMinorRevision = '1.0'
 # Run the server
 
 # Tcp:
-StartTcpServer(context, identity=identity, address=("localhost", 5020))
+StartTcpServer(context, identity=identity, address=("10.72.21.89", 5020))
 
 # Udp:
 #StartUdpServer(context, identity=identity, address=("localhost", 502))

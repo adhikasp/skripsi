@@ -1,12 +1,9 @@
 #!/usr/bin/env python
-#-*-coding:utf8;-*-
-#qpy:2
-#qpy:kivy
 '''
 Android client
 '''
 from pyModbusTCP.client import ModbusClient
-import plyer
+# import plyer
 import logging
 import struct
 
@@ -38,16 +35,16 @@ if __name__ == '__main__':
     # plyer.gyroscope.enable()
     # x, y, z = plyer.gyroscope.orientation
     # plyer.gyroscope.disable()
-    x, y, z = 1, 2, 3
+    x, y, z = 1, 0.1, -0.1
     address_offset = 1
     for data in (x, y, z):
         logging.debug('Sending value: {}'.format(data))
         binary_data = number_to_array_bits(data)
         logging.debug('Data length: {}'.format(len(binary_data)))
-        rr = client.write_multiple_coils(address_offset, binary_data)
+        rr = client.write_multiple_registers(address_offset, binary_data)
         address_offset += len(binary_data)
 
-    bits = client.read_coils(1, address_offset)
+    bits = client.read_coils(1, 32)
     logging.debug('Reading data from slave: {}'.format(bits))
 
     logging.debug('Script complete.')
